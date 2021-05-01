@@ -1,17 +1,8 @@
 const grpc = require('grpc')
-const protoLoader = require('@grpc/proto-loader')
 const { v4: uuid } = require('uuid')
 
-const PROTO_PATH = './customers.proto'
+const customersProto = require('../utils/customers-proto')
 
-const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
-  keepCase: true,
-  longs: String,
-  enums: String,
-  arrays: true
-})
-
-const customersProto = grpc.loadPackageDefinition(packageDefinition)
 const server = new grpc.Server()
 
 const customers = [
